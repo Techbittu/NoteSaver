@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:d_pad/utils/database_helper.dart';
 import 'package:d_pad/model/note.dart';
@@ -30,6 +31,7 @@ class _AddnoteState extends State<Addnote> {
   @override
   Widget build(BuildContext context) {
 
+    // ignore: deprecated_member_use
     TextStyle textStyle = Theme.of(context).textTheme.title;
 
     titleController.text = note.title;
@@ -92,21 +94,25 @@ class _AddnoteState extends State<Addnote> {
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 5.0,bottom: 15.0),
-              child: TextField(
-                controller: descriptionController,
-                style: textStyle,
-                onChanged: (value){
-                  debugPrint("Something change in text field $value");
-                  updateDescription();
-                },
-                decoration: InputDecoration(
-                    labelText: "Description",
-                    labelStyle: textStyle,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0)
-                    )
+              child: Container(
+                height: 100,
+                child:
+                 TextField(
+                  controller: descriptionController,
+                  style: textStyle,
+                  onChanged: (value){
+                    debugPrint("Something change in text field $value");
+                    updateDescription();
+                  },
+                  decoration: InputDecoration(
+                      labelText: "Description",
+                      labelStyle: textStyle,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)
+                      )
+                  ),
                 ),
-              ),
+              )
             ),
             Padding(padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
             child: Row(
@@ -118,8 +124,8 @@ class _AddnoteState extends State<Addnote> {
                       _save();
                     });
                   },
-                  color: Theme.of(context).primaryColorDark,
-                  textColor: Theme.of(context).primaryColorLight,
+                  color: Colors.yellow,
+                  textColor: Colors.black,
                   child: Text(
                     "Save",
                     textScaleFactor: 1.5,
@@ -133,8 +139,8 @@ class _AddnoteState extends State<Addnote> {
                       _delete();
                     });
                   },
-                  color: Theme.of(context).primaryColorDark,
-                  textColor: Theme.of(context).primaryColorLight,
+                  color: Colors.yellow,
+                  textColor: Colors.black,
                   child: Text(
                     "Delete",
                     textScaleFactor: 1.5,

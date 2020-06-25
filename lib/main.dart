@@ -9,10 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "D_Note",
+      title: "Note Saver",
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        bottomAppBarTheme: BottomAppBarTheme(color: Colors.deepPurple)
+        primarySwatch: Colors.yellow,
+        bottomAppBarTheme: BottomAppBarTheme(color: Colors.black)
       ),
       home: Mynewapp(),
       debugShowCheckedModeBanner: false,

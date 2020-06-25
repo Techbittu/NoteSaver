@@ -1,16 +1,19 @@
+import 'package:d_pad/screen/searchPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:d_pad/utils/database_helper.dart';
-import 'package:d_pad/model/note.dart';
 import 'package:d_pad/screen/notedetail.dart';
+import "package:d_pad/model/note.dart";
 
 class Mynewapp extends StatefulWidget {
+
   @override
   _MynewappState createState() => _MynewappState();
 }
 
 class _MynewappState extends State<Mynewapp> {
+
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Note> noteList;
   int count = 0;
@@ -29,31 +32,43 @@ class _MynewappState extends State<Mynewapp> {
           child: Container(
             child: Row(
               children: <Widget>[
-                Expanded(child: Icon(Icons.add)),
-                Expanded(child: Icon(Icons.search)),
+                Expanded(child: IconButton(
+                  icon: Icon(Icons.note_add)
+                  , onPressed: (){
+                  navigateToDetail(Note("", "", 2), "Add Note");
+                },
+                  color: Colors.yellow,
+                )),
+                Expanded(child: IconButton(
+                  icon: Icon(Icons.search)
+                  , onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage()));
+                },
+                  color: Colors.yellow,
+                )),
                 Expanded(child: IconButton(
                     icon: Icon(Icons.settings)
                     , onPressed: (){},
-                  color: Colors.white,
-                    ))
+                  color: Colors.yellow,
+                    )),
               ],
             ),
           ),
         ),
       ),
-      appBar: AppBar(title: Text("Notes")),
+      appBar: AppBar(title: Text("Notes Saver")),
       body: getNoteListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToDetail(Note("", "", 2), "Add Note");
         },
-        tooltip: "Add Note",
-        child: Icon(Icons.note_add),
+        tooltip: "Share",
+        child: Icon(Icons.share),
       ),
     );
   }
 
   ListView getNoteListView() {
+    // ignore: deprecated_member_use
     TextStyle titleStyle = Theme.of(context).textTheme.subhead;
     return ListView.builder(
       itemCount: count,
